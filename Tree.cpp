@@ -34,17 +34,20 @@ void Tree::insert_matrix(const std::vector<std::vector<int>>& matrix)
 	{
 		std::shared_ptr<Node> temp = curr;
 
+		std::cout << "curr: " << curr->data << std::endl;
+
 		for (int j = 0; j < cols; j++)
 		{
 			if ((j + 1) < cols)
 			{
-				std::cout << "child right: " << curr->child_right->data << std::endl;
 				curr->child_right = Create_New_Node(matrix.at(i).at(j + 1));
+				std::cout << "child right: " << curr->child_right->data << std::endl;
 			}
 
 			if ((i + 1) < rows)
 			{
 				curr->child_low = Create_New_Node(matrix.at(i + 1).at(j));
+				std::cout << "child low: " << curr->child_low->data << std::endl;
 			}
 
 			curr = curr->child_right;
