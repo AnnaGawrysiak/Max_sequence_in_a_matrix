@@ -38,9 +38,11 @@ int main()
 
     Tree my_tree;
     my_tree.insert_matrix(matrix);
-
-    std::cout << my_tree.root->data << std::endl;
-    std::cout << my_tree.root->child_right->child_right->child_low->child_low->data << std::endl;
+    std::cout << "Breadth First Search: " << std::endl;
+    my_tree.BFS();
+    std::cout << std::endl;
+    std::cout << "Max sum from root to leaf: " << my_tree.MaxSumFromRootToLeaf() << std::endl;
 
     return 0;
 }
+

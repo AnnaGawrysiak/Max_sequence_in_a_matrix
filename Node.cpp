@@ -9,5 +9,6 @@ Node::Node(int value)
 
 Node::Node()
 {
-
+	child_low = nullptr;
+	child_right = nullptr;
 }

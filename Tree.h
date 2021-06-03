@@ -2,10 +2,13 @@
 #include "Node.h"
 #include <string>
 #include <vector>
+#include <limits>
 
 class Tree
 {
-public:
+private:
+	int max_sum = INT_MIN;
+	std::vector<int> max_sum_path;
 	std::shared_ptr<Node> root;
 public:
 	Tree();
@@ -13,6 +16,7 @@ public:
 	void insert_matrix(const std::vector<std::vector<int>>& matrix);
 	std::shared_ptr<Node> Max_Sum_Path();
 	void BFS();
-	int getDepth();
+	int MaxSumFromRootToLeaf();
+	void Max_Sum_helper(std::shared_ptr<Node> curr, int sum);
 };
 
