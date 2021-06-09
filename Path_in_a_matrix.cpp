@@ -31,10 +31,10 @@ int main()
     int rows = 4;// N
     int cols = 3; // M
 
-    std::vector<std::vector<int>> matrix = { {9, 9, 7},
-                                           { 9, 7, 2 },
-                                           { 6, 9, 5 },
-                                           { 9, 1, 2 }};
+    std::vector<std::vector<int>> matrix = { {9, 9, 7, 8},
+                                           { 9, 7, 2, 5 },
+                                           { 6, 9, 5, 4 },
+                                           { 9, 1, 2, 3 }};
 
     Tree my_tree;
     my_tree.insert_matrix(matrix);

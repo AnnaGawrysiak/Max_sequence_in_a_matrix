@@ -25,37 +25,45 @@ std::shared_ptr<Node> Tree::Create_New_Node(int val)
 
 void Tree::insert_matrix(const std::vector<std::vector<int>>& matrix)
 {
+	if (matrix.empty())
+		return;
+
 	root = Create_New_Node(matrix.at(0).at(0));
 	std::shared_ptr<Node> curr = root;
 
 	int rows = matrix.size();
 	int cols = matrix.at(0).size();
 
-	for (int i = 0; i < rows; i++)
-	{
-		std::shared_ptr<Node> temp = curr;
+	// Create first row
 
-		//std::cout << "curr: " << curr->data << std::endl;
+	for (int i = 1; i < cols ; i++)
+	{
+		curr->child_right = Create_New_Node(matrix.at(0).at(i));
+		curr = curr->child_right;
+	}
+
+	std::shared_ptr<Node> parent = root;
+	// insert subsequent rows
+
+	for (int i = 1; i < rows; i++)
+	{
+		std::shared_ptr<Node> curr = Create_New_Node(matrix.at(i).at(0));
+		std::shared_ptr<Node> temp = curr;
 
 		for (int j = 0; j < cols; j++)
 		{
+			parent->child_low = curr;
+			parent = parent->child_right;
 
-			if ((i + 1) < rows)
+			if (j < cols - 1)
 			{
-				curr->child_low = Create_New_Node(matrix.at(i + 1).at(j));
-				//std::cout << "child low: " << curr->child_low->data << std::endl;
+				curr->child_right = Create_New_Node(matrix.at(i).at(j+1));
+				curr = curr->child_right;
 			}
-
-			if ((j + 1) < cols)
-			{
-				curr->child_right = Create_New_Node(matrix.at(i).at(j + 1));
-				//std::cout << "child right: " << curr->child_right->data << std::endl;
-			}
-
-			curr = curr->child_right;
+			
 		}
 
-		curr = temp->child_low;
+		parent = temp;
 	}
 
 }
