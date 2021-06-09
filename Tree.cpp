@@ -103,6 +103,48 @@ void Tree::BFS()
 	}
 }
 
+std::vector<int> Tree::MaxNumberFromRootToLeaf()
+{
+	std::vector<int> max_number;
+
+	if (!root)
+		return max_number;
+	
+	std::shared_ptr<Node> curr = root;
+	max_number.push_back(curr->data);
+	
+	while (curr)
+	{
+		if (curr->child_low == nullptr && curr->child_right == nullptr)
+			return max_number;
+		else if (curr->child_low == nullptr && curr->child_right != nullptr)
+			while (curr->child_right)
+			{
+				max_number.push_back(curr->child_right->data);
+				curr = curr->child_right;
+			}
+		else if (curr->child_low != nullptr && curr->child_right == nullptr)
+			while (curr->child_low)
+			{
+				max_number.push_back(curr->child_low->data);
+				curr = curr->child_low;
+			}
+		else if (curr->child_low->data > curr->child_right->data)
+		{
+			max_number.push_back(curr->child_low->data);
+			curr = curr->child_low;
+		}
+		else
+		{
+			max_number.push_back(curr->child_right->data);
+			curr = curr->child_right;
+		}
+	}
+
+	return max_number;
+
+}
+
 int Tree::MaxSumFromRootToLeaf()
 {
 	std::shared_ptr<Node> node = root;

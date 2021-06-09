@@ -31,7 +31,7 @@ int main()
     int rows = 4;// N
     int cols = 3; // M
 
-    std::vector<std::vector<int>> matrix = { {9, 9, 7, 8},
+    std::vector<std::vector<int>> matrix = { {9, 8, 7, 8},
                                            { 9, 7, 2, 5 },
                                            { 6, 9, 5, 4 },
                                            { 9, 1, 2, 3 }};
@@ -41,7 +41,15 @@ int main()
     std::cout << "Breadth First Search: " << std::endl;
     my_tree.BFS();
     std::cout << std::endl;
-    std::cout << "Max sum from root to leaf: " << my_tree.MaxSumFromRootToLeaf() << std::endl;
+    std::vector<int> number = my_tree.MaxNumberFromRootToLeaf();
+    std::cout << "Max number hidden in a matrix: " << std::endl;
+
+    for (const auto& item : number)
+    {
+        std::cout << item << " ";
+    }
+    std::cout << std::endl;
+    std::cout << "Max sum: " <<  my_tree.MaxSumFromRootToLeaf() << std::endl;
 
     return 0;
 }
